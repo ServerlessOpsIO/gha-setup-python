@@ -5,8 +5,7 @@ on:
   push:
     branches:
       - '*'
-    branches-ignore:
-      - 'main'
+      - '!main'
 
 jobs:
   build:
@@ -16,9 +15,9 @@ jobs:
       contents: read
 
     steps:
-      - name: Action Lint
-        id: action-lint
-        uses: raven-actions/actionlint@v2
+      - name: Schema Validation
+        id: schema-validation
+        uses: dsanders11/json-schema-validate-action@v1.2.0
         with:
-          files: 'action.yml'
-          pyflakes: false
+          files: 'action.yaml'
+          schema: https://json.schemastore.org/github-workflow.json
