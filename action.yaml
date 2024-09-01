@@ -1,0 +1,45 @@
+
+name: setup-python
+description: Installs Python and project dependencies
+
+inputs:
+  python_version:
+    description: Python version
+
+runs:
+  using: composite
+
+  steps:
+    - name: Setup Python
+      id: install-python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '${{ inputs.python_version }}'
+        cache: pipenv
+
+    - name: Install pipenv
+      id: install-pipenv
+      shell: bash
+      run: pip install --user --upgrade pipenv
+
+    # This is to ensure that all jobs in a workflow will resolve the same dependencies
+    - name: Check Pipfile.lock
+      id: check-pipfile-lock
+      shell: bash
+      run: |
+        if [ -f Pipfile.lock ]; \
+        then \
+          echo "has-lock=true" >> $GITHUB_OUTPUT; \
+        else \
+          echo "has-lock=false" >> $GITHUB_OUTPUT; \
+        fi
+
+    - name: Install dependencies
+      id: install-python-deps
+      shell: bash
+      run: pipenv install --dev
+
+outputs:
+  python-version: ${{ steps.install-python.outputs.python-version }}
+  python-path: ${{ steps.install-python.outputs.python-path }}
+  cache-hit: ${{ steps.install-python.outputs.cache-hit }}

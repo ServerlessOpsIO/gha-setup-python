@@ -1,0 +1,22 @@
+name: Main
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Action Lint
+        id: action-lint
+        uses: raven-actions/actionlint@v2
+        with:
+          files: 'action.yml'
+          pyflakes: false
