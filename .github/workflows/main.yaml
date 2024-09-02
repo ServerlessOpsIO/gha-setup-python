@@ -45,13 +45,26 @@ jobs:
       - name: Checkout source
         id: checkout-source
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Merge branch
         id: merge-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          echo "Configuring git"
           git config user.name "GitHub Actions"
           git config user.email "<>"
-          git branch -v
-          git log
+
+          echo "Checking out branch"
+          git fetch origin v1
+          git checkout v1
+          git reset --hard v1
+
+          echo "Merging branch"
+          git merge --no-ff $GITHUB_REF
+
+          echo "Pushing branch"
+          git push origin v1
+
