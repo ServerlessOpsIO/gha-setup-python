@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Setup job workspace
-        uses: serverlessops/gha-setup-workspace
+        uses: serverlessops/gha-setup-workspace@v1
         with:
           job_type: build
 
