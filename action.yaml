@@ -40,6 +40,12 @@ runs:
       run: pipenv install --dev
 
 outputs:
-  python-version: ${{ steps.install-python.outputs.python-version }}
-  python-path: ${{ steps.install-python.outputs.python-path }}
-  cache-hit: ${{ steps.install-python.outputs.cache-hit }}
+  python-version:
+    description: Python version
+    value: ${{ steps.install-python.outputs.python-version }}
+  python-path:
+    description: Python path
+    value: ${{ steps.install-python.outputs.python-path }}
+  cache-hit:
+    description: Cache hit
+    value: ${{ steps.install-python.outputs.cache-hit }}

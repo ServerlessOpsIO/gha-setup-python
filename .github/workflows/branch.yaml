@@ -5,8 +5,8 @@ on:
   push:
     branches:
       - '*'
-    branches-ignore:
-      - 'main'
+      - '!main'
+      - '!v*'
 
 jobs:
   build:
@@ -16,9 +16,17 @@ jobs:
       contents: read
 
     steps:
-      - name: Action Lint
-        id: action-lint
-        uses: raven-actions/actionlint@v2
+      - name: Set extra GitHub environment variables
+        id: github-env-vars
+        uses: rlespinasse/github-slug-action@v4
+
+      - name: Checkout source
+        id: checkout-source
+        uses: actions/checkout@v4
+
+      - name: Schema Validation
+        id: schema-validation
+        uses: dsanders11/json-schema-validate-action@v1.2.0
         with:
-          files: 'action.yml'
-          pyflakes: false
+          files: 'action.yaml'
+          schema: https://json.schemastore.org/github-action.json
