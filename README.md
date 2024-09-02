@@ -34,4 +34,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 ## Contact
 For any questions or support, please open an issue in this repository.
-
