@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
+      contents: write
 
     steps:
       - name: Set extra GitHub environment variables
@@ -67,4 +67,3 @@ jobs:
 
           echo "Pushing branch"
           git push origin v1
-
