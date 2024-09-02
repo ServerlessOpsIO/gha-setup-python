@@ -14,13 +14,8 @@ jobs:
       contents: read
 
     steps:
-      - name: Set extra GitHub environment variables
-        id: github-env-vars
-        uses: rlespinasse/github-slug-action@v4
-
-      - name: Checkout source
-        id: checkout-source
-        uses: actions/checkout@v4
+      - name: Setup job workspace
+        uses: ServerlessOpsIO/gha-setup-workspace@v1
 
       - name: Schema Validation
         id: schema-validation
@@ -38,15 +33,10 @@ jobs:
       contents: write
 
     steps:
-      - name: Set extra GitHub environment variables
-        id: github-env-vars
-        uses: rlespinasse/github-slug-action@v4
-
-      - name: Checkout source
-        id: checkout-source
-        uses: actions/checkout@v4
+      - name: Setup job workspace
+        uses: ServerlessOpsIO/gha-setup-workspace@v1
         with:
-          fetch-depth: 0
+          checkout_fetch_depth: 0
 
       - name: Merge branch
         id: merge-branch
