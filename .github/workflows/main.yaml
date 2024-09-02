@@ -16,8 +16,6 @@ jobs:
     steps:
       - name: Setup job workspace
         uses: ServerlessOpsIO/gha-setup-workspace@v1
-        with:
-          job_type: build
 
       - name: Schema Validation
         id: schema-validation
@@ -38,7 +36,6 @@ jobs:
       - name: Setup job workspace
         uses: ServerlessOpsIO/gha-setup-workspace@v1
         with:
-          job_type: deploy
           checkout_fetch_depth: 0
 
       - name: Merge branch
