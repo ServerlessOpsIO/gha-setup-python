@@ -15,10 +15,10 @@ To use this action, add the following step to your workflow:
 ```yaml
 steps:
   - name: Checkout code
-    uses: serverlessopsio/gha-setup-workspace@v1
+    uses: ServerlessOpsIO/gha-setup-workspace@v1
 
   - name: Setup Python enviornment
-    uses: serverlessopsio/gha-setup-python@v1
+    uses: ServerlessOpsIO/gha-setup-python@v1
 ```
 
 ## Inputs
