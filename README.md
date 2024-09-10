@@ -10,6 +10,17 @@ This action will perform the following actions:
 * Install dependencies
 
 ## Usage
+See below for inputs, outputs, and examples.
+
+### Inputs
+- `python_version` (_optional_): The version of Python to use. This action uses the version resolution employed by [actions/setup-python](https://github.com/actions/setup-python)
+
+### Outputs
+- `python-version`: he installed Python or PyPy version. Useful when given a version range as input.
+- `cache-hit`: A boolean value to indicate a cache entry was found
+- `python-path`: The absolute path to the Python or PyPy executable.
+
+### Examples
 To use this action, add the following step to your workflow:
 
 ```yaml
@@ -17,17 +28,9 @@ steps:
   - name: Checkout code
     uses: ServerlessOpsIO/gha-setup-workspace@v1
 
-  - name: Setup Python enviornment
+  - name: Setup Python environment
     uses: ServerlessOpsIO/gha-setup-python@v1
 ```
-
-## Inputs
-* python-version (_optional_): The version of Python to use. This action uses the version resolution employed by [actions/setup-python](https://github.com/actions/setup-python)
-
-## Outputs
-* python-version: he installed Python or PyPy version. Useful when given a version range as input.
-* cache-hit: A boolean value to indicate a cache entry was found
-* python-path: The absolute path to the Python or PyPy executable.
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any changes.
