@@ -22,6 +22,7 @@ runs:
       shell: bash
       run: pip install --user --upgrade pipenv
 
+    # FIXME: We're not checking this value anywhere and should be
     # This is to ensure that all jobs in a workflow will resolve the same dependencies
     - name: Check Pipfile.lock
       id: check-pipfile-lock
